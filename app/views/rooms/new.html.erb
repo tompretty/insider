@@ -1,0 +1,12 @@
+<h1>New Room</h1>
+
+<%= form_for @room do |form| %>
+  <%= form.fields_for :players do |form| %>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  <% end %>
+
+  <%= form.submit %>
+<% end %>
+
+<%= link_to "Back", root_path %>
