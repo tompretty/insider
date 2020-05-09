@@ -58,6 +58,6 @@ class Room < ApplicationRecord
   private
 
   def all_players_have_voted?
-    players.all(&:has_voted?)
+    players.map(&:has_voted?).all?
   end
 end
