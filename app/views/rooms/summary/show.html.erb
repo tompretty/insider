@@ -1,0 +1,8 @@
+<h1>Summary</h1>
+
+<p>You lost!</p>
+
+<%= form_for @player, url: room_participation_path(@room.next_room), method: :post do |form| %>
+  <%= form.text_field :name, hidden: true %>
+  <%= form.submit "Play again?" %>
+<% end %>

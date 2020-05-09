@@ -1,8 +1,4 @@
-<h1>Room</h1>
-
-<h2>Info</h2>
-
-<p><strong>room id: </strong> <%= @room.id %></p>
+<h1>Lobby</h1>
 
 <h2>Players</h2>
 
@@ -11,3 +7,5 @@
     <li><%= player.name %></li>
   <% end %>
 </ul>
+
+<%= button_to "Start", room_start_path(@room) %>

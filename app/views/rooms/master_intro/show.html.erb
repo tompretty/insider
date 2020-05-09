@@ -1,0 +1,10 @@
+<h1>Master</h1>
+
+<p>You are the master. Think of a word, answer yes or no questions, and keep an eye out for the insider.</p>
+
+<%= form_tag room_word_path do %>
+  <%= label_tag :word, "Secret word" %>
+  <%= text_field_tag :word, nil, placeholder: "Enter a secret word..." %>
+
+  <%= submit_tag "Submit" %>
+<% end %>

@@ -1,6 +1,7 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: :show
   before_action :ensure_user_has_joined, only: :show
+  before_action :redirect_to_current_phase, only: :show
 
   def show
   end
@@ -35,5 +36,9 @@ class RoomsController < ApplicationController
     unless @room.user_has_joined?(current_user)
       redirect_to root_path
     end
+  end
+
+  def redirect_to_current_phase
+    redirect_to PhaseRouter.call(room: @room, player: @room.player_for(current_user))
   end
 end

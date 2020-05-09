@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_08_210856) do
+ActiveRecord::Schema.define(version: 2020_05_09_160208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 2020_05_08_210856) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "role"
+    t.uuid "votee_id"
     t.index ["room_id"], name: "index_players_on_room_id"
     t.index ["user_id"], name: "index_players_on_user_id"
   end
@@ -29,6 +31,9 @@ ActiveRecord::Schema.define(version: 2020_05_08_210856) do
   create_table "rooms", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "phase", default: 0
+    t.string "word"
+    t.uuid "next_room_id"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

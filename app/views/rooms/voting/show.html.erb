@@ -1,0 +1,14 @@
+<h1>Voting</h1>
+
+<p>It's time to vote. Who do you think the insider was?</p>
+
+<ul>
+  <% @room.players.each do |player|  %>
+    <li>
+      <%= form_tag room_vote_path(@room) do %>
+        <%= text_field_tag :player_id, player.id, hidden: true %>
+        <%= submit_tag "Vote for #{player.name}" %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
