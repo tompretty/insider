@@ -13,8 +13,11 @@ class RoomsController < ApplicationController
 
   def create
     build_room
-    @room.save
-    redirect_to @room
+    if @room.save
+      redirect_to @room
+    else
+      render :new
+    end
   end
 
   private

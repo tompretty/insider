@@ -1,6 +1,10 @@
 <h1>New Room</h1>
 
 <%= form_for @room do |form| %>
+  <% if @room.errors.any? %>
+    <p><%= @room.errors.full_messages[0] %></p>
+  <% end %>
+
   <%= form.fields_for :players do |form| %>
     <%= form.label :name %>
     <%= form.text_field :name %>
