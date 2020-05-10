@@ -1,6 +1,7 @@
 class Rooms::ParticipationsController < ApplicationController
   before_action :set_room
   before_action :redirect_if_already_joined
+  before_action :redirect_if_already_started
 
   def new
     @player = @room.players.new
@@ -33,6 +34,12 @@ class Rooms::ParticipationsController < ApplicationController
   def redirect_if_already_joined
     if @room.user_has_joined?(current_user)
       redirect_to @room
+    end
+  end
+
+  def redirect_if_already_started
+    if @room.has_started?
+      redirect_to root_path, alert: "Room already started"
     end
   end
 end

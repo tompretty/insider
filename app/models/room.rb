@@ -14,6 +14,10 @@ class Room < ApplicationRecord
     summary: 4,
   }
 
+  def has_started?
+    !lobby?
+  end
+
   def start
     update(phase: :intro)
     RoleAllocator.call(room: self)
