@@ -1,7 +1,7 @@
 class Rooms::ParticipationsController < ApplicationController
   before_action :set_room
-  before_action :redirect_if_already_joined
-  before_action :redirect_if_already_started
+  before_action :redirect_if_already_joined, except: :destroy
+  before_action :redirect_if_already_started, except: :destroy
 
   def new
     @player = @room.players.new
@@ -13,6 +13,16 @@ class Rooms::ParticipationsController < ApplicationController
       redirect_to @room
     else
       render :new
+    end
+  end
+
+  def destroy
+    if !@room.has_started?
+      @player = @room.player_for(current_user)
+      @player.destroy
+      redirect_to root_path
+    else
+      redirect_to @room
     end
   end
 

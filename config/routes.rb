@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       resource :search, only: [:create], controller: "rooms/search"
     end
 
-    resource :participation, only: [:new, :create], controller: "rooms/participations"
+    resource :participation, only: [:new, :create, :destroy], controller: "rooms/participations"
 
     # game actions
     resource :start, only: [:create], controller: "rooms/start"
