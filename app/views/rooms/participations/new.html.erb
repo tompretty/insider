@@ -1,6 +1,10 @@
 <h1>Join room</h1>
 
-<%= form_tag @player, url: room_participation_path(@room) do |form| %>
+<%= form_for @player, url: room_participation_path(@room) do |form| %>
+  <% if @player.errors.any? %>
+    <p><%= @player.errors.full_messages[0] %></p>
+  <% end %>
+
   <%= form.label :name %>
   <%= form.text_field :name %>
 

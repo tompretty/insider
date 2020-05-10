@@ -3,3 +3,8 @@
 <p><strong>user id: </strong> <%= current_user.id %></p>
 
 <%= link_to "Create a room", new_room_path %>
+
+<%= form_tag search_path do %>
+  <%= text_field_tag :code, nil, placeholder: "Enter a code..." %>
+  <%= submit_tag "Join" %>
+<% end %>

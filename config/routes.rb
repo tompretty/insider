@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   root "welcome#index"
 
   resources :rooms, only: [:new, :create, :show] do
+    collection do
+      resource :search, only: [:create], controller: "rooms/search"
+    end
+
     resource :participation, only: [:new, :create], controller: "rooms/participations"
 
     # game actions

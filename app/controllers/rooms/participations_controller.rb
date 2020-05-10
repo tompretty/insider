@@ -8,8 +8,11 @@ class Rooms::ParticipationsController < ApplicationController
 
   def create
     build_player
-    @player.save
-    redirect_to @room
+    if @player.save
+      redirect_to @room
+    else
+      render :new
+    end
   end
 
   private

@@ -1,4 +1,6 @@
 class Player < ApplicationRecord
+  validates :name, presence: true, uniqueness: { scope: :room_id }
+
   belongs_to :user
   belongs_to :room
 
