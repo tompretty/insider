@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_09_160208) do
+ActiveRecord::Schema.define(version: 2020_05_09_181510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2020_05_09_160208) do
     t.integer "phase", default: 0
     t.string "word"
     t.uuid "next_room_id"
+    t.string "code", null: false
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

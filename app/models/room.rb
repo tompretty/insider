@@ -1,4 +1,6 @@
 class Room < ApplicationRecord
+  before_create :set_code
+
   has_many :players, dependent: :destroy
   has_many :users, through: :players
 
@@ -59,5 +61,17 @@ class Room < ApplicationRecord
 
   def all_players_have_voted?
     players.map(&:has_voted?).all?
+  end
+
+  # code
+  def set_code
+    self.code = generate_code
+  end
+
+  def generate_code
+    loop do
+      code = CodeGenerator.call
+      break code unless Room.where(code: code).exists?
+    end
   end
 end
