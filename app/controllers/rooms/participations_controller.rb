@@ -10,6 +10,7 @@ class Rooms::ParticipationsController < ApplicationController
   def create
     build_player
     if @player.save
+      RoomChannel.broadcast_to @room, {}
       redirect_to @room
     else
       render :new
@@ -20,6 +21,7 @@ class Rooms::ParticipationsController < ApplicationController
     if !@room.has_started?
       @player = @room.player_for(current_user)
       @player.destroy
+      RoomChannel.broadcast_to @room, {}
       redirect_to root_path
     else
       redirect_to @room

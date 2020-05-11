@@ -12,3 +12,5 @@
 
 <%= button_to "Start", room_start_path(@room) %>
 <%= button_to "Leave", room_participation_path(@room), method: :delete %>
+
+<div id="app" data-id="<%= @room.id %>"></div>
