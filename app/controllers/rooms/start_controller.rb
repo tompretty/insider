@@ -4,6 +4,7 @@ class Rooms::StartController < ApplicationController
 
   def create
     @room.start
+    RoomChannel.broadcast_to @room, {}
     redirect_to @room
   end
 
